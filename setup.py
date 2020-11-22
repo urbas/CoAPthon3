@@ -11,6 +11,14 @@ setup(
     author_email='giacomo.tanganelli@for.unipi.it',
     download_url='https://github.com/Tanganelli/CoAPthon3/archive/1.0.1.tar.gz',
     description='CoAPthon is a python library to the CoAP protocol. ',
-    scripts=['coapserver.py', 'coapclient.py', 'exampleresources.py', 'coapforwardproxy.py', 'coapreverseproxy.py'],
+    entry_points={
+        "console_scripts": [
+            "coapclient = coapthon.coapclient:main",
+            "coapcollectserver = coapthon.collectserver:main",
+            "coapforwardproxy = coapthon.coapforwardproxy:main",
+            "coapreverseproxy = coapthon.coapreverseproxy:main",
+            "coapserver = coapthon.coapserver:main",
+        ]
+    },
     requires=['sphinx', 'cachetools']
 )

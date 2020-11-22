@@ -1,6 +1,6 @@
 import copy
 from coapthon.messages.request import Request
-from coapclient import HelperClient
+from coapthon.coapclient import HelperClient
 from coapthon.messages.response import Response
 from coapthon import defines
 from coapthon.resources.remoteResource import RemoteResource
@@ -19,7 +19,7 @@ class ForwardLayer(object):
     def receive_request(self, transaction):
         """
         Setup the transaction for forwarding purposes on Forward Proxies.
-         
+
         :type transaction: Transaction
         :param transaction: the transaction that owns the request
         :rtype : Transaction
@@ -44,7 +44,7 @@ class ForwardLayer(object):
     def receive_request_reverse(self, transaction):
         """
         Setup the transaction for forwarding purposes on Reverse Proxies.
-         
+
         :type transaction: Transaction
         :param transaction: the transaction that owns the request
         :rtype : Transaction
@@ -120,14 +120,14 @@ class ForwardLayer(object):
 
     def _handle_request(self, transaction, new_resource):
         """
-        Forward requests. Used by reverse proxies to also create new virtual resources on the proxy 
+        Forward requests. Used by reverse proxies to also create new virtual resources on the proxy
         in case of created resources
-        
+
         :type new_resource: bool
         :type transaction: Transaction
         :param transaction: the transaction that owns the request
         :rtype : Transaction
-        :param new_resource: if the request will generate a new resource 
+        :param new_resource: if the request will generate a new resource
         :return: the edited transaction
         """
         client = HelperClient(transaction.resource.remote_server)

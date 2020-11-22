@@ -12,7 +12,7 @@ client = None
 
 
 def usage():  # pragma: no cover
-    print("Command:\tcoapclient.py -o -p [-P]")
+    print(f"Command:\t{sys.argv[0]} -o -p [-P]")
     print("Options:")
     print("\t-o, --operation=\tGET|PUT|POST|DELETE|DISCOVER|OBSERVE")
     print("\t-p, --path=\t\t\tPath of the request")
@@ -115,7 +115,7 @@ def main():  # pragma: no cover
             usage()
             sys.exit(2)
         client.observe(path, client_callback_observe)
-        
+
     elif op == "DELETE":
         if path is None:
             print("Path cannot be empty for a DELETE request")

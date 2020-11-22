@@ -3,9 +3,9 @@ import random
 import socket
 import threading
 import unittest
-from coapclient import HelperClient
-from coapforwardproxy import CoAPForwardProxy
-from coapserver import CoAPServer
+from coapthon.coapclient import HelperClient
+from coapthon.coapforwardproxy import CoAPForwardProxy
+from coapthon.coapserver import CoAPServer
 from coapthon import defines
 from coapthon.messages.option import Option
 from coapthon.messages.request import Request

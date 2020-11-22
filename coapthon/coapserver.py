@@ -31,15 +31,15 @@ class CoAPServer(CoAP):
 
 
 def usage():  # pragma: no cover
-    print("coapserver.py -i <ip address> -p <port>")
+    print(f"{sys.argv[0]} -i <ip address> -p <port>")
 
 
-def main(argv):  # pragma: no cover
+def main():  # pragma: no cover
     ip = "0.0.0.0"
     port = 5683
     multicast = False
     try:
-        opts, args = getopt.getopt(argv, "hi:p:m", ["ip=", "port=", "multicast"])
+        opts, args = getopt.getopt(sys.argv[1:], "hi:p:m", ["ip=", "port=", "multicast"])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -64,4 +64,4 @@ def main(argv):  # pragma: no cover
 
 
 if __name__ == "__main__":  # pragma: no cover
-    main(sys.argv[1:])
+    main()

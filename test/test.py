@@ -3,8 +3,8 @@ import random
 import socket
 import threading
 import unittest
-from coapclient import HelperClient
-from coapserver import CoAPServer
+from coapthon.coapclient import HelperClient
+from coapthon.coapserver import CoAPServer
 from coapthon import defines
 from coapthon.messages.message import Message
 from coapthon.messages.option import Option

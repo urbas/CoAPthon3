@@ -2,29 +2,27 @@
 
 import getopt
 import sys
-from coapthon.reverse_proxy.coap import CoAP
+from coapthon.forward_proxy.coap import CoAP
 
 __author__ = 'Giacomo Tanganelli'
 
 
-class CoAPReverseProxy(CoAP):
-    def __init__(self, host, port, xml_file, multicast=False, cache=False, starting_mid=None):
-        CoAP.__init__(self, (host, port), xml_file=xml_file, multicast=multicast, starting_mid=starting_mid,
-                      cache=cache)
+class CoAPForwardProxy(CoAP):
+    def __init__(self, host, port,  multicast=False, cache=False):
+        CoAP.__init__(self, (host, port), multicast=multicast, cache=cache)
 
         print(("CoAP Proxy start on " + host + ":" + str(port)))
 
 
 def usage():  # pragma: no cover
-    print("coapreverseproxy.py -i <ip address> -p <port> -f <xml_file>")
+    print(f"{sys.argv[0]} -i <ip address> -p <port>")
 
 
-def main(argv):  # pragma: no cover
+def main():  # pragma: no cover
     ip = "0.0.0.0"
     port = 5684
-    file_xml = "reverse_proxy_mapping.xml"
     try:
-        opts, args = getopt.getopt(argv, "hi:p:f:", ["ip=", "port=", "file="])
+        opts, args = getopt.getopt(sys.argv[1:], "hi:p:", ["ip=", "port="])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -36,10 +34,8 @@ def main(argv):  # pragma: no cover
             ip = arg
         elif opt in ("-p", "--port"):
             port = int(arg)
-        elif opt in ("-f", "--file"):
-            file_xml = arg
 
-    server = CoAPReverseProxy(ip, port, file_xml)
+    server = CoAPForwardProxy(ip, port)
     try:
         server.listen(10)
     except KeyboardInterrupt:
@@ -49,4 +45,4 @@ def main(argv):  # pragma: no cover
 
 
 if __name__ == "__main__":  # pragma: no cover
-    main(sys.argv[1:])
+    main()
